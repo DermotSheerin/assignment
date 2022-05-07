@@ -1,14 +1,13 @@
-// const pool = require('../../postgres-node/queries');
+const { models } = require('../models/index');
 
 const employees = {
 
-    index(request, response) {
-        // const employees =
-        const viewData = {
-            title: "employee title",              // title for the browser tab
-        };
-        response.render('employees', viewData);
-    },
+  async index(request, response) {
+    const employees = await models.Employee.findAll();
+    response.render('employees', {
+      employees: employees
+    });
+  }
 
 };
 
