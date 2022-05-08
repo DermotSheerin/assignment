@@ -20,5 +20,6 @@ router.get('/companies', (req, res, next) => {
 /* Employees page. */
 router.get('/employees', Employees.index);
 router.post('/employees', Employees.addEmployee);
+router.get('/employees/deleteEmployee/:email', Employees.deleteEmployee);
 
 module.exports = router;

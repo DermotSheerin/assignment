@@ -1,3 +1,4 @@
+// DB Model using Sequalize ORM
 const { Sequelize, DataTypes } = require('sequelize');
 
 const getEmployeeModel = require('./employee');

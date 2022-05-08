@@ -22,7 +22,35 @@ const employees = {
       phone: request.body.phone
     });
     response.redirect('/employees');
+  },
+
+  async deleteEmployee(request, response) {
+    const employeeEmail = request.params.email;
+    console.log(`employeeEmail inside deleteEmployee: ${employeeEmail}`);
+    //const findEmployee = await this.findEmployee(request.body.email);
+    const findEmployee = await employees.findEmployee(employeeEmail);
+
+    if (findEmployee) {
+      await findEmployee.destroy();
+      response.redirect('/employees');
+    }
+  },
+
+  async findEmployee(email) {
+    return await models.Employee.findOne({
+      where: {
+        email: email
+      }
+    });
   }
+
+  // async findEmployee(request, response) {
+  //   return await models.Employee.findOne({
+  //     where: {
+  //       email: request.body.email
+  //     }
+  //   })
+  // }
 
 };
 

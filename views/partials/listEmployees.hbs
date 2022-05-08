@@ -7,6 +7,7 @@
             <th>Company</th>
             <th>Email</th>
             <th>Phone</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -18,6 +19,9 @@
                     <td>{{company}}</td>
                     <td>{{email}}</td>
                     <td>{{phone}}</td>
+                    <td> <a href="/employees/deleteEmployee/{{email}} " class="ui icon button">
+                        <i class="icon trash"></i> </a>
+                    </td>
             {{/dataValues}}
             </tr>
         {{/each}}
