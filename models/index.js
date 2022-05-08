@@ -1,11 +1,10 @@
-const { Sequelize, Model, DataTypes } = require('sequelize');
+// DB Model using Sequalize ORM
+const { Sequelize, DataTypes } = require('sequelize');
 
 const getEmployeeModel = require('./employee');
 
 const sequelize = new Sequelize(
-  DATABASE = 'employee',
-  '127.0.0.1',
-  'assignment',
+  DATABASE = 'assignment',
   DATABASE_USER = 'postgres',
   DATABASE_PASSWORD = 'postgres',
   {

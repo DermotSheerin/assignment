@@ -5,21 +5,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const handlebars = require("express-handlebars").engine;
-// const { Sequelize } = require('sequelize');
 
 const indexRouter = require('./routes');
 
 const app = express();
-// const sequelize = new Sequelize('pos');
-
-//Sets our app to use the handlebars engine
-//app.set('view engine', 'handlebars');
-
-// //Sets handlebars configurations (we will go through them later on)
-// app.engine('handlebars', handlebars({
-//     layoutsDir: __dirname + '/views/layouts',
-// }));
-// app.use(express.static('public'))
 
 app.use(express.static("public"));
 app.engine(
@@ -31,7 +20,6 @@ app.engine(
 );
 
 // view engine setup
-//app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', '.hbs');
 
 app.use(logger('dev'));

@@ -1,4 +1,4 @@
-<article class="ui segment" >
+<article class="ui segment">
     <table class="ui celled table">
         <thead>
         <tr>
@@ -6,12 +6,23 @@
             <th>Last name</th>
             <th>Company</th>
             <th>Email</th>
+            <th>Phone</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
         {{#each employees}}
-            <tr>
-
+            {{#dataValues}}
+                <tr>
+                    <td>{{first_name}}</td>
+                    <td>{{last_name}}</td>
+                    <td>{{company}}</td>
+                    <td>{{email}}</td>
+                    <td>{{phone}}</td>
+                    <td> <a href="/employees/deleteEmployee/{{email}} " class="ui icon button">
+                        <i class="icon trash"></i> </a>
+                    </td>
+            {{/dataValues}}
             </tr>
         {{/each}}
         </tbody>

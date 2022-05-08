@@ -1,15 +1,42 @@
-// const pool = require('../../postgres-node/queries');
+const { models } = require('../models/index');
+
+let id = 2;
 
 const employees = {
 
-    index(request, response) {
-        // const employees =
-        const viewData = {
-            title: "employee title",              // title for the browser tab
-        };
-        response.render('employees', viewData);
-    },
+  async index(request, response) {
+    const employees = await models.Employee.findAll();
+    response.render('employees', {
+      employees: employees
+    });
+  },
 
+  async addEmployee(request, response) {
+    id++;
+    await models.Employee.create({
+      id: id,
+      first_name: request.body.first_name,
+      last_name: request.body.last_name,
+      company: request.body.company,
+      email: request.body.email,
+      phone: request.body.phone
+    });
+    response.redirect('/employees');
+  },
+
+  async deleteEmployee(request, response) {
+    const employeeEmail = request.params.email;
+    const employee = await models.Employee.findOne({
+      where: {
+        email: employeeEmail
+      }
+    });
+
+    if (employee) {
+      await employee.destroy();
+      response.redirect('/employees');
+    }
+  }
 };
 
 module.exports = employees;

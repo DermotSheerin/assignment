@@ -1,3 +1,6 @@
+// DB Model using Sequalize ORM
+
+// create employee table if not defined
 const getEmployeeModel = (sequelize, DataTypes) => {
   return sequelize.define('employee', {
     first_name: {
