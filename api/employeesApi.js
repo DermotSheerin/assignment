@@ -1,14 +1,10 @@
-const pool = require('../postgres-node/queries');
+const { models } = require('../models/index');
 
 const employeesApi = {
 
-  getAllEmployees(request, response) {
-    pool.query('SELECT * FROM employees', (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(200).json(results.rows)
-    })
+  async getAllEmployees(request, response) {
+    const employees = await models.Employee.findAll();
+    response.status(200).json(employees)
   }
 };
 
