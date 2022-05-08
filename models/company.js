@@ -1,31 +1,17 @@
-// create employee table if not defined
-const getEmployeeModel = (sequelize, DataTypes) => {
-  return sequelize.define('employee', {
+const getEmployeeModel = require('./employee');
+
+// create company table if not defined
+const getCompanyModel = (sequelize, DataTypes) => {
+  return sequelize.define('company', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      first_name: {
+      name: {
         type: DataTypes.STRING,
-        unique: false,
-        allowNull: false,
-        validate: {
-          notEmpty: true
-        }
-      },
-      last_name: {
-        type: DataTypes.STRING,
-        unique: false,
-        allowNull: false,
-        validate: {
-          notEmpty: true
-        }
-      },
-      companyId: {
-        type: DataTypes.INTEGER,
-        unique: false,
+        unique: true,
         allowNull: false,
         validate: {
           notEmpty: true
@@ -46,6 +32,14 @@ const getEmployeeModel = (sequelize, DataTypes) => {
         validate: {
           notEmpty: true
         }
+      },
+      website: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: true,
+        validate: {
+          notEmpty: false
+        }
       }
     },
     {
@@ -54,4 +48,4 @@ const getEmployeeModel = (sequelize, DataTypes) => {
   );
 };
 
-module.exports = getEmployeeModel;
+module.exports = getCompanyModel;
