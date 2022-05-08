@@ -2,6 +2,8 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
 const getEmployeeModel = require('./employee');
+const getCompanyModel = require('./company');
+const getAdminModel = require('./admin');
 
 const sequelize = new Sequelize(
   DATABASE = 'assignment',
@@ -13,7 +15,17 @@ const sequelize = new Sequelize(
 );
 
 const models = {
-  Employee: getEmployeeModel(sequelize, DataTypes)
+  Company: getCompanyModel(sequelize, DataTypes),
+  Employee: getEmployeeModel(sequelize, DataTypes),
+  Admin: getAdminModel(sequelize, DataTypes)
+};
+
+models.Company.associate = function(models) {
+  models.Company.hasMany(models.Employee);
+};
+
+models.Employee.associate = function(models) {
+  models.Employee.belongsTo(models.Company, { onDelete: 'CASCADE' });
 };
 
 Object.keys(models).forEach((key) => {
