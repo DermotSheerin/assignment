@@ -26,32 +26,17 @@ const employees = {
 
   async deleteEmployee(request, response) {
     const employeeEmail = request.params.email;
-    console.log(`employeeEmail inside deleteEmployee: ${employeeEmail}`);
-    //const findEmployee = await this.findEmployee(request.body.email);
-    const findEmployee = await employees.findEmployee(employeeEmail);
-
-    if (findEmployee) {
-      await findEmployee.destroy();
-      response.redirect('/employees');
-    }
-  },
-
-  async findEmployee(email) {
-    return await models.Employee.findOne({
+    const employee = await models.Employee.findOne({
       where: {
-        email: email
+        email: employeeEmail
       }
     });
+
+    if (employee) {
+      await employee.destroy();
+      response.redirect('/employees');
+    }
   }
-
-  // async findEmployee(request, response) {
-  //   return await models.Employee.findOne({
-  //     where: {
-  //       email: request.body.email
-  //     }
-  //   })
-  // }
-
 };
 
 module.exports = employees;
