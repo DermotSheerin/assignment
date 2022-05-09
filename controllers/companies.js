@@ -10,13 +10,17 @@ const companies = {
   },
 
   async addCompany(request, response) {
-    await models.Company.create({
-      name: request.body.name,
-      email: request.body.email,
-      phone: request.body.phone,
-      website: request.body.website
-    });
-    response.redirect('/companies');
+    try {
+      await models.Company.create({
+        name: request.body.name,
+        email: request.body.email,
+        phone: request.body.phone,
+        website: request.body.website
+      });
+      response.redirect('/companies');
+    } catch (err) {
+      response.sendStatus(500);
+    }
   },
 
   // async deleteEmployee(request, response) {
