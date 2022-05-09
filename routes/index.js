@@ -32,6 +32,7 @@ router.get('/employees/deleteEmployee/:email', authenticateToken, Employees.dele
 /* Companies page. */
 router.get('/companies', authenticateToken, Companies.index);
 router.post('/companies', authenticateToken, Companies.addCompany);
+router.get('/companies/deleteCompany/:id', authenticateToken, Companies.deleteCompany);
 
 /* API Get all employees */
 /**
