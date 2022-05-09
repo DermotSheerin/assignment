@@ -3,6 +3,7 @@ const { models } = require('../models/index');
 const employees = {
 
   async index(request, response) {
+    // Create JOIN queries through Sequelize association to get company name displayed in view
     const employees = await models.Employee.findAll({ include: models.Company });
     const companies = await models.Company.findAll();
     response.render('employees', {
@@ -12,6 +13,10 @@ const employees = {
   },
 
   async addEmployee(request, response) {
+    /**
+     * @todo validation before write to DB
+     */
+
     await models.Employee.create({
       first_name: request.body.first_name,
       last_name: request.body.last_name,
@@ -34,6 +39,12 @@ const employees = {
       await employee.destroy();
       response.redirect('/employees');
     }
+  },
+
+  async updateEmployee(request, response) {
+    /**
+     * @todo Implement update employee operation
+     */
   }
 };
 
