@@ -4,6 +4,7 @@ const router = express.Router();
 const Employees = require('../controllers/employees');
 const EmployeesAPI = require('../api/employeesApi');
 const Accounts = require('../controllers/accounts');
+const Companies = require('../controllers/companies');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -16,15 +17,14 @@ router.post('/login', Accounts.login);
 router.get('/signup', Accounts.showSignup);
 router.post('/signup', Accounts.signup);
 
-/* GET companies page. */
-router.get('/companies', (req, res, next) => {
-  res.send('got to companies in new router 77');
-});
-
 /* Employees page. */
 router.get('/employees', Employees.index);
 router.post('/employees', Employees.addEmployee);
 router.get('/employees/deleteEmployee/:email', Employees.deleteEmployee);
+
+/* Companies page. */
+router.get('/companies', Companies.index);
+router.post('/companies', Companies.addCompany);
 
 /* API Get all employees */
 router.get('/api/employees', EmployeesAPI.getAllEmployees);

@@ -11,7 +11,13 @@
             </div>
             <div class="field">
                 <strong>Company</strong>
-                <input type="text" placeholder="Company" name="company" required>
+        <select name="company" id="company">
+            {{#each companies}}
+                {{#dataValues}}
+                    <option value={{name}}>{{name}}</option>
+                {{/dataValues}}
+            {{/each}}
+        </select>
             </div>
             <div class="field">
                 <strong>Email</strong>

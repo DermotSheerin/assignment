@@ -2,26 +2,24 @@
     <table class="ui celled table">
         <thead>
         <tr>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Company</th>
+            <th>Company Name</th>
             <th>Email</th>
             <th>Phone</th>
+            <th>Website</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
-        {{#each employees}}
+        {{#each companies}}
             {{#dataValues}}
                 <tr>
-                    <td>{{first_name}}</td>
-                    <td>{{last_name}}</td>
-                    <td>{{companyId}}</td>
+                    <td>{{name}}</td>
                     <td>{{email}}</td>
                     <td>{{phone}}</td>
-                    <td> <a href="/employees/deleteEmployee/{{email}} " class="ui icon button">
-                        <i class="icon trash"></i> </a>
-                    </td>
+                    <td>{{website}}</td>
+<!--                    <td> <a href="/employees/deleteEmployee/{{email}} " class="ui icon button">-->
+<!--                        <i class="icon trash"></i> </a>-->
+<!--                    </td>-->
             {{/dataValues}}
             </tr>
         {{/each}}
