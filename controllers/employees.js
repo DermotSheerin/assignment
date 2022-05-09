@@ -18,14 +18,16 @@ const employees = {
       }
     });
 
-    await models.Employee.create({
-      first_name: request.body.first_name,
-      last_name: request.body.last_name,
-      companyId: company.id,
-      email: request.body.email,
-      phone: request.body.phone
-    });
-    response.redirect('/employees');
+    if (company) {
+      await models.Employee.create({
+        first_name: request.body.first_name,
+        last_name: request.body.last_name,
+        companyId: company.id,
+        email: request.body.email,
+        phone: request.body.phone
+      });
+      response.redirect('/employees');
+    }
   },
 
   async deleteEmployee(request, response) {
