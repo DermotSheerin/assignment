@@ -23,19 +23,22 @@ const companies = {
     }
   },
 
-  // async deleteEmployee(request, response) {
-  //   const employeeEmail = request.params.email;
-  //   const employee = await models.Employee.findOne({
-  //     where: {
-  //       email: employeeEmail
-  //     }
-  //   });
-  //
-  //   if (employee) {
-  //     await employee.destroy();
-  //     response.redirect('/employees');
-  //   }
-  // }
+  async deleteCompany(request, response) {
+    const companyId = request.params.id;
+    try {
+      const company = await models.Company.findOne({
+        where: {
+          id: companyId
+        }
+      });
+      if (company) {
+        await company.destroy();
+        response.redirect('/companies');
+      }
+    } catch (err) {
+      response.sendStatus(500);
+    }
+  }
 };
 
 module.exports = companies;
