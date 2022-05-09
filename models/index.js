@@ -20,10 +20,16 @@ const models = {
   Admin: getAdminModel(sequelize, DataTypes)
 };
 
+/**
+ * create company has many employees association
+ */
 models.Company.associate = function(models) {
   models.Company.hasMany(models.Employee);
 };
 
+/**
+ * create employee belongs to Company association
+ */
 models.Employee.associate = function(models) {
   models.Employee.belongsTo(models.Company, { onDelete: 'CASCADE' });
 };

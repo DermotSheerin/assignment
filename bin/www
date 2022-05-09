@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const { models, sequelize } = require('../models/index');
+require('dotenv').config();
 
 /**
  * Module dependencies.
