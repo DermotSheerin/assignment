@@ -11,13 +11,13 @@
             </div>
             <div class="field">
                 <strong>Company</strong>
-        <select name="company" id="company">
-            {{#each companies}}
-                {{#dataValues}}
-                    <option value={{name}}>{{name}}</option>
-                {{/dataValues}}
-            {{/each}}
-        </select>
+                <select name="companyId" id="companyId">
+                    {{#each companies}}
+                        {{#dataValues}}
+                            <option value={{id}}>{{name}}</option>
+                        {{/dataValues}}
+                    {{/each}}
+                </select>
             </div>
             <div class="field">
                 <strong>Email</strong>

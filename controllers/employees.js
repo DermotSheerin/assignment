@@ -3,8 +3,8 @@ const { models } = require('../models/index');
 const employees = {
 
   async index(request, response) {
-    const employees = await models.Employee.findAll();
-    const companies = await models.Company.findAll(); // ================= possible find ALL employees and companies on main page where administrator gets to select to add a company or add an employee?
+    const employees = await models.Employee.findAll({ include: models.Company });
+    const companies = await models.Company.findAll();
     response.render('employees', {
       employees: employees,
       companies: companies
@@ -12,22 +12,14 @@ const employees = {
   },
 
   async addEmployee(request, response) {
-    const company = await models.Company.findOne({
-      where: {
-        name: request.body.company
-      }
+    await models.Employee.create({
+      first_name: request.body.first_name,
+      last_name: request.body.last_name,
+      companyId: request.body.companyId,
+      email: request.body.email,
+      phone: request.body.phone
     });
-
-    if (company) {
-      await models.Employee.create({
-        first_name: request.body.first_name,
-        last_name: request.body.last_name,
-        companyId: company.id,
-        email: request.body.email,
-        phone: request.body.phone
-      });
-      response.redirect('/employees');
-    }
+    response.redirect('/employees');
   },
 
   async deleteEmployee(request, response) {
