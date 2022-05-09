@@ -20,6 +20,9 @@ router.post('/login', Accounts.login);
 router.get('/signup', Accounts.showSignup);
 router.post('/signup', Accounts.signup);
 
+/* Landing page. */
+router.get('/dashboard', authenticateToken, Accounts.index);
+
 /* Employees page. */
 router.get('/employees', authenticateToken, Employees.index);
 router.post('/employees', Employees.addEmployee);
