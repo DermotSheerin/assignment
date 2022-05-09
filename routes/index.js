@@ -11,7 +11,7 @@ const AdminAPI = require('../api/adminApi');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('main', { title: 'Main Menu' });
+  res.render('main');
 });
 
 /* Accounts routes */
@@ -19,6 +19,7 @@ router.get('/login', Accounts.showLogin);
 router.post('/login', Accounts.login);
 router.get('/signup', Accounts.showSignup);
 router.post('/signup', Accounts.signup);
+router.get('/logout', Accounts.logout);
 
 /* Landing page. */
 router.get('/dashboard', authenticateToken, Accounts.index);

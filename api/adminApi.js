@@ -11,14 +11,13 @@ const adminApi = {
           email: email
         }
       });
-
       if (admin && (admin.password === password)) {
         const token = createToken({ email: email });
         admin.dataValues.token = { token: token };
         response.status(200).json(admin);
       } else response.sendStatus(404);
     } catch (err) {
-      console.log(`loginAuthentication ERROR: ${err}`);
+      response.sendStatus(500);
     }
   }
 };
