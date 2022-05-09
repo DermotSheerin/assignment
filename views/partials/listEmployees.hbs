@@ -16,7 +16,8 @@
                 <tr>
                     <td>{{first_name}}</td>
                     <td>{{last_name}}</td>
-                    <td>{{company}}</td>
+<!--                retrieve company name added via JOIN/include in controller-->
+                    <td>{{company.dataValues.name}}</td>
                     <td>{{email}}</td>
                     <td>{{phone}}</td>
                     <td> <a href="/employees/deleteEmployee/{{email}} " class="ui icon button">

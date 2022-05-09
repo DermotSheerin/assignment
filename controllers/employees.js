@@ -1,23 +1,21 @@
 const { models } = require('../models/index');
 
-let id = 2;
-
 const employees = {
 
   async index(request, response) {
-    const employees = await models.Employee.findAll();
+    const employees = await models.Employee.findAll({ include: models.Company });
+    const companies = await models.Company.findAll();
     response.render('employees', {
-      employees: employees
+      employees: employees,
+      companies: companies
     });
   },
 
   async addEmployee(request, response) {
-    id++;
     await models.Employee.create({
-      id: id,
       first_name: request.body.first_name,
       last_name: request.body.last_name,
-      company: request.body.company,
+      companyId: request.body.companyId,
       email: request.body.email,
       phone: request.body.phone
     });
