@@ -7,6 +7,7 @@ const Accounts = require('../controllers/accounts');
 const Companies = require('../controllers/companies');
 
 const EmployeesAPI = require('../api/employeesApi');
+const CompanyAPI = require('../api/companiesApi');
 const AdminAPI = require('../api/adminApi');
 
 /* GET home page. */
@@ -34,11 +35,12 @@ router.get('/companies', authenticateToken, Companies.index);
 router.post('/companies', authenticateToken, Companies.addCompany);
 router.get('/companies/deleteCompany/:id', authenticateToken, Companies.deleteCompany);
 
-/* API Get all employees */
+/* API routes */
 /**
- * @todo add further APIs
+ * @todo add further APIs and add authentication using JWT
  */
 router.get('/api/employees', EmployeesAPI.getAllEmployees);
+router.get('/api/companies', CompanyAPI.getAllCompanies);
 router.post('/api/admin/login', AdminAPI.loginAuthentication);
 
 module.exports = router;
