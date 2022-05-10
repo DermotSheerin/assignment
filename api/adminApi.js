@@ -1,5 +1,5 @@
 const { models } = require('../models/index');
-const { createToken, verifyToken } = require('../jwtUtils/utils');
+const { createToken } = require('../jwtUtils/utils');
 
 const adminApi = {
 
