@@ -50,27 +50,27 @@ Requirements not implemented yet:
 
 ### Routing - includes some protected routes, handled by the authenticateToken middleware
 
-/* Accounts routes */
-router.get('/login', Accounts.showLogin);
-router.post('/login', Accounts.login);
-router.get('/signup', Accounts.showSignup);
-router.post('/signup', Accounts.signup);
-router.get('/logout', Accounts.logout);
+#### Accounts
+- router.get('/login', Accounts.showLogin);
+- router.post('/login', Accounts.login);
+- router.get('/signup', Accounts.showSignup);
+- router.post('/signup', Accounts.signup);
+- router.get('/logout', Accounts.logout);
 
-/* Landing page. */
-router.get('/dashboard', authenticateToken, Accounts.index);
+#### Dashboard
+- router.get('/dashboard', authenticateToken, Accounts.index);
 
-/* Employees page. */
-router.get('/employees', authenticateToken, Employees.index);
-router.post('/employees', Employees.addEmployee);
-router.get('/employees/deleteEmployee/:email', authenticateToken, Employees.deleteEmployee);
+#### Employees 
+- router.get('/employees', authenticateToken, Employees.index);
+- router.post('/employees', Employees.addEmployee);
+- router.get('/employees/deleteEmployee/:email', authenticateToken, Employees.deleteEmployee);
 
-/* Companies page. */
-router.get('/companies', authenticateToken, Companies.index);
-router.post('/companies', authenticateToken, Companies.addCompany);
-router.get('/companies/deleteCompany/:id', authenticateToken, Companies.deleteCompany);
+#### Companies 
+- router.get('/companies', authenticateToken, Companies.index);
+- router.post('/companies', authenticateToken, Companies.addCompany);
+- router.get('/companies/deleteCompany/:id', authenticateToken, Companies.deleteCompany);
 
-/* API routes */
-router.get('/api/employees', EmployeesAPI.getAllEmployees);
-router.get('/api/companies', CompanyAPI.getAllCompanies);
-router.post('/api/admin/login', AdminAPI.loginAuthentication);
+#### APIs
+- router.get('/api/employees', EmployeesAPI.getAllEmployees);
+- router.get('/api/companies', CompanyAPI.getAllCompanies);
+- router.post('/api/admin/login', AdminAPI.loginAuthentication);
