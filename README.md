@@ -47,6 +47,8 @@ Requirements not implemented yet:
    - Company API
    - Employee API
 
+## Integration tests for API’s
+The 'API tests' suite can be accessed from the test folder in the project root directory. The suite of tests can be ran from the auth-api-test.js file.
 
 ### Routing - includes some protected routes, handled by the authenticateToken middleware
 
