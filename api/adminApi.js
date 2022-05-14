@@ -13,8 +13,8 @@ const adminApi = {
       });
       if (admin && (admin.password === password)) {
         const token = createToken({ email: email });
-        admin.dataValues.token = { token: token };
-        response.status(200).json(admin);
+        admin.dataValues.token = token;
+        response.status(200).send(admin);
       } else response.sendStatus(404);
     } catch (err) {
       response.sendStatus(500);

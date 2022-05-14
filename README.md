@@ -19,7 +19,7 @@ Software implementation minimal specification – latest Node, Express – Postg
 
 Requirements not implemented yet: 
  + Company/Employee Update functionality
- + Limitted number of Integrated tests for all API's, additional tests will be added in the future
+ + Limitted number of Integrated tests for all API's using Mocha and also Jest, additional tests will be added in the future
  + Use of Express validation middleware to demonstrate basic payload validation
 
 
@@ -48,7 +48,8 @@ Requirements not implemented yet:
    - Employee API
 
 ## Integration tests for API’s
-The 'API tests' suite can be accessed from the test folder in the project root directory. The suite of tests can be ran from the auth-api-test.js file.
+The Mocha 'API tests' suite can be accessed from the test folder in the project root directory. The suite of tests can be ran from the auth-api-test.js file.
+The Jest 'API tests' suite can be accessed from the __test__ folder in the project root directory. The suite of tests can be ran from the userToken.spec.js file.
 
 ### Routing - includes some protected routes, handled by the authenticateToken middleware
 
