@@ -40,6 +40,7 @@ router.get('/companies/deleteCompany/:id', authenticateToken, Companies.deleteCo
  * @todo add further APIs and add authentication using JWT
  */
 router.get('/api/employees', EmployeesAPI.getAllEmployees);
+router.post('/api/employees', EmployeesAPI.addEmployee);
 router.get('/api/companies', CompanyAPI.getAllCompanies);
 router.post('/api/admin/login', AdminAPI.loginAuthentication);
 

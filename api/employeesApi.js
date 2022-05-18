@@ -9,6 +9,15 @@ const employeesApi = {
     } catch (err) {
       response.sendStatus(500);
     }
+  },
+
+  async addEmployee(request, response) {
+    try {
+      const newEmployee = await models.Employee.create(request.body);
+      response.status(200).json(newEmployee);
+    } catch (err) {
+      response.sendStatus(500);
+    }
   }
 };
 
