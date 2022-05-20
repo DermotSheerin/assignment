@@ -41,6 +41,7 @@ router.get('/companies/deleteCompany/:id', authenticateToken, Companies.deleteCo
  */
 router.get('/api/employees', EmployeesAPI.getAllEmployees);
 router.post('/api/employees', EmployeesAPI.addEmployee);
+router.get('/api/employees/deleteEmployee/:email', EmployeesAPI.deleteEmployee);
 router.get('/api/companies', CompanyAPI.getAllCompanies);
 router.post('/api/admin/login', AdminAPI.loginAuthentication);
 

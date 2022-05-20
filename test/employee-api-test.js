@@ -24,10 +24,10 @@ suite('employee API tests', function() {
 
   test('create new employee', async function() {
     const newEmployee = await companyEmployeeService.addEmployee(employee1);
-    assert.equal(employee1.email, newEmployee.data.email)
+    assert.equal(employee1.email, newEmployee.data.email);
   });
 
-  test('getAllEmployees and verify data returned', async function() {
+  test('getAllEmployees and verify data returned BEFORE employee1 delete', async function() {
     const employees = await companyEmployeeService.getAllEmployees();
     // verify return status is 200
     assert.equal(200, employees.status);
@@ -35,6 +35,30 @@ suite('employee API tests', function() {
     assert.isDefined(employees.data);
     // verify email field is present
     assert.isDefined(employees.data[0].email);
+    // verify employee table contains 2 employees
+    assert.equal(2, employees.data.length);
+  });
+
+  test('delete new employee', async function() {
+    const deleteEmployee = await companyEmployeeService.deleteEmployee(employee1.email);
+    // verify return status is 200
+    assert.equal(200, deleteEmployee.status);
+    // verify email field is present
+    assert.equal(employee1.email, deleteEmployee.data.email);
+    // verify employees data is present
+    assert.isDefined(deleteEmployee.data);
+  });
+
+  test('getAllEmployees and verify data returned AFTER delete employee1', async function() {
+    const employees = await companyEmployeeService.getAllEmployees();
+    // verify return status is 200
+    assert.equal(200, employees.status);
+    // verify companies data is present
+    assert.isDefined(employees.data);
+    // verify email field is present
+    assert.isDefined(employees.data[0].email);
+    // verify employee table contains 1 employee after employee1 delete
+    assert.equal(1, employees.data.length);
   });
 
 });

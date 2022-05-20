@@ -43,10 +43,10 @@ class CompanyEmployeeService {
     }
   }
 
-  async getAllCompanies() {
+  async deleteEmployee(employeeEmail) {
     try {
       const response = await axios.request({
-        url: `${this.baseUrl}/api/companies`,
+        url: `${this.baseUrl}/api/employees/deleteEmployee/${employeeEmail}`,
         method: 'GET'
       });
       return response;
@@ -59,6 +59,18 @@ class CompanyEmployeeService {
     try {
       const response = await axios.request({
         url: `${this.baseUrl}/api/employees`,
+        method: 'GET'
+      });
+      return response;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async getAllCompanies() {
+    try {
+      const response = await axios.request({
+        url: `${this.baseUrl}/api/companies`,
         method: 'GET'
       });
       return response;

@@ -18,7 +18,23 @@ const employeesApi = {
     } catch (err) {
       response.sendStatus(500);
     }
-  }
+  },
+
+  async deleteEmployee(request, response) {
+    try {
+      const employee = await models.Employee.findOne({
+        where: {
+          email: request.params.email
+        }
+      });
+      if (employee) {
+        await employee.destroy();
+        response.status(200).json(employee);
+      }
+    } catch (err) {
+      response.sendStatus(500);
+    }
+  },
 };
 
 module.exports = employeesApi;
