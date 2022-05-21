@@ -27,7 +27,7 @@ router.get('/dashboard', authenticateToken, Accounts.index);
 
 /* Employees page. */
 router.get('/employees', authenticateToken, Employees.index);
-router.post('/employees', Employees.addEmployee);
+router.post('/employees', authenticateToken, Employees.addEmployee);
 router.get('/employees/deleteEmployee/:email', authenticateToken, Employees.deleteEmployee);
 
 /* Companies page. */

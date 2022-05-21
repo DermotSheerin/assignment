@@ -19,7 +19,6 @@ Software implementation minimal specification – latest Node, Express – Postg
 
 Requirements not implemented yet: 
  + Company/Employee Update functionality
- + Limitted number of Integrated tests for all API's using Mocha and also Jest, additional tests will be added in the future
  + Use of Express validation middleware to demonstrate basic payload validation
 
 
@@ -48,7 +47,12 @@ Requirements not implemented yet:
    - Employee API
 
 ## Integration tests for API’s
-The Mocha 'API tests' suite can be accessed from the test folder in the project root directory. The suite of tests can be ran from the auth-api-test.js file.
+The Mocha 'API tests' suite can be accessed from the test folder in the project root directory. The test folder contains 4 test files:
+ - auth-api-test.js file: login/authentication test
+ - companyEmployee-service.js: service class to deliver client-side api to the remote service
+ - company-api-test.js: company tests
+ - employee-api-test.js: employee tests
+ 
 The Jest 'API tests' suite can be accessed from the __test__ folder in the project root directory. The suite of tests can be ran from the userToken.spec.js file.
 
 ### Routing - includes some protected routes, handled by the authenticateToken middleware
@@ -65,7 +69,7 @@ The Jest 'API tests' suite can be accessed from the __test__ folder in the proje
 
 #### Employees 
 - router.get('/employees', authenticateToken, Employees.index);
-- router.post('/employees', Employees.addEmployee);
+- router.post('/employees', authenticateToken, Employees.addEmployee);
 - router.get('/employees/deleteEmployee/:email', authenticateToken, Employees.deleteEmployee);
 
 #### Companies 
@@ -75,5 +79,7 @@ The Jest 'API tests' suite can be accessed from the __test__ folder in the proje
 
 #### APIs
 - router.get('/api/employees', EmployeesAPI.getAllEmployees);
+- router.post('/api/employees', EmployeesAPI.addEmployee);
+- router.get('/api/employees/deleteEmployee/:email', EmployeesAPI.deleteEmployee);
 - router.get('/api/companies', CompanyAPI.getAllCompanies);
 - router.post('/api/admin/login', AdminAPI.loginAuthentication);
