@@ -31,7 +31,7 @@ suite('employee API tests', function() {
     const employees = await companyEmployeeService.getAllEmployees();
     // verify return status is 200
     assert.equal(200, employees.status);
-    // verify companies data is present
+    // verify employees data is present
     assert.isDefined(employees.data);
     // verify email field is present
     assert.isDefined(employees.data[0].email);
@@ -53,7 +53,7 @@ suite('employee API tests', function() {
     const employees = await companyEmployeeService.getAllEmployees();
     // verify return status is 200
     assert.equal(200, employees.status);
-    // verify companies data is present
+    // verify employees data is present
     assert.isDefined(employees.data);
     // verify email field is present
     assert.isDefined(employees.data[0].email);
