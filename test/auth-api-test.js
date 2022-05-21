@@ -2,7 +2,7 @@
 const assert = require('chai').assert;
 const CompanyEmployeeService = require('./companyEmployee-service');
 
-suite('API tests', function() {
+suite('login authentication API tests', function() {
   const baseUrl = 'http://localhost:3000';
   const companyEmployeeService = new CompanyEmployeeService(baseUrl);
 
@@ -10,19 +10,13 @@ suite('API tests', function() {
    * @todo Implement setup/teardown and more test cases
    */
 
-  test('loginAuthentication', async function() {
-    const employee = await companyEmployeeService.loginAuthentication();
-    assert.isDefined(employee);
-    assert.isDefined(employee.token);
-  });
-
-  test('getAllCompanies', async function() {
-    const companies = await companyEmployeeService.getAllCompanies();
-    assert.isDefined(companies);
-  });
-
-  test('getAllEmployees', async function() {
-    const employees = await companyEmployeeService.getAllEmployes();
-    assert.isDefined(employees);
+  test('loginAuthentication and verify data returned', async function() {
+    const user = await companyEmployeeService.loginAuthentication();
+    // verify return status is 200
+    assert.equal(200, user.status);
+    // verify user data is present
+    assert.isDefined(user.data);
+    // verify user token is present
+    assert.isDefined(user.data.token);
   });
 });

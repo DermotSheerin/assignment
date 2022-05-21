@@ -17,7 +17,51 @@ class CompanyEmployeeService {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         data: formData
       });
-      return response.data;
+      return response;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async addEmployee(employee) {
+    try {
+      const formData = new URLSearchParams();
+      formData.append('first_name', employee.first_name);
+      formData.append('last_name', employee.last_name);
+      formData.append('companyId', employee.companyId);
+      formData.append('email', employee.email);
+      formData.append('phone', employee.phone);
+      const response = await axios.request({
+        url: `${this.baseUrl}/api/employees`,
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        data: formData
+      });
+      return response;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async deleteEmployee(employeeEmail) {
+    try {
+      const response = await axios.request({
+        url: `${this.baseUrl}/api/employees/deleteEmployee/${employeeEmail}`,
+        method: 'GET'
+      });
+      return response;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async getAllEmployees() {
+    try {
+      const response = await axios.request({
+        url: `${this.baseUrl}/api/employees`,
+        method: 'GET'
+      });
+      return response;
     } catch (e) {
       return null;
     }
@@ -29,19 +73,7 @@ class CompanyEmployeeService {
         url: `${this.baseUrl}/api/companies`,
         method: 'GET'
       });
-      return response.data;
-    } catch (e) {
-      return null;
-    }
-  }
-
-  async getAllEmployes() {
-    try {
-      const response = await axios.request({
-        url: `${this.baseUrl}/api/employees`,
-        method: 'GET'
-      });
-      return response.data;
+      return response;
     } catch (e) {
       return null;
     }
