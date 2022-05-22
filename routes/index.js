@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { authenticateToken } = require('../jwtUtils/utils');
+const { body } = require('express-validator');
 
 const Employees = require('../controllers/employees');
 const Accounts = require('../controllers/accounts');
@@ -19,7 +20,17 @@ router.get('/', (req, res, next) => {
 router.get('/login', Accounts.showLogin);
 router.post('/login', Accounts.login);
 router.get('/signup', Accounts.showSignup);
-router.post('/signup', Accounts.signup);
+router.post('/signup',
+  // username must be an email, normalizeEmail to convert the emails entered into the standard approved format
+  body('email')
+    .isEmail()
+    .normalizeEmail()
+    .withMessage('Invalid Email format'),
+  // password must be at least 5 chars long
+  body('password')
+    .isLength({ min: 5 })
+    .withMessage('Password must be at least 5 characters long'),
+  Accounts.signup);
 router.get('/logout', Accounts.logout);
 
 /* Landing page. */
