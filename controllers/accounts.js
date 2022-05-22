@@ -1,3 +1,5 @@
+const { validationResult } = require('express-validator');
+
 const { models } = require('../models/index');
 const { createToken } = require('../jwtUtils/utils');
 
@@ -36,8 +38,7 @@ const accounts = {
         response.redirect('dashboard');
       } else {
         response.render('login', {
-          title: 'Sign in error',
-          errors: 'admin user details incorrect !!!!'
+          errors: [{ param: 'Sign in error', msg: 'Admin user details incorrect !!!!' }]
         });
       }
     } catch (err) {
@@ -46,25 +47,30 @@ const accounts = {
   },
 
   async signup(request, response) {
-    const { email, password } = request.body;
-
     try {
-      const admin = await models.Admin.findOne({
-        where: {
-          email: email
-        }
-      });
-      if (admin) {
-        response.render('login', {
-          title: 'Signup error',
-          errors: 'admin user already exists !!!!'
+      const errors = validationResult(request);
+      if (!errors.isEmpty()) {
+        response.render('signup', {
+          errors: errors.array()
         });
       } else {
-        await models.Admin.create({
-          email: request.body.email,
-          password: request.body.password
+        const { email } = request.body;
+        const admin = await models.Admin.findOne({
+          where: {
+            email: email
+          }
         });
-        response.redirect('login');
+        if (admin) {
+          response.render('signup', {
+            errors: [{ param: 'Signup error', msg: 'Admin user already exists !!' }]
+          });
+        } else {
+          await models.Admin.create({
+            email: request.body.email,
+            password: request.body.password
+          });
+          response.redirect('login');
+        }
       }
     } catch (err) {
       response.sendStatus(500);

@@ -5,7 +5,9 @@
             There was a problem...
         </div>
         <ul class="list">
-            <li>{{errors}}</li>
+            {{#each errors}}
+                <li>{{param}} : {{msg}}</li>
+            {{/each}}
         </ul>
     </div>
 {{/if}}

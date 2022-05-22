@@ -19,8 +19,6 @@ Software implementation minimal specification – latest Node, Express – Postg
 
 Requirements not implemented yet: 
  + Company/Employee Update functionality
- + Use of Express validation middleware to demonstrate basic payload validation
-
 
 ## Setup requirements.
  + Install PostgreSQL on your local machine
@@ -61,7 +59,7 @@ The Jest 'API tests' suite can be accessed from the __test__ folder in the proje
 - router.get('/login', Accounts.showLogin);
 - router.post('/login', Accounts.login);
 - router.get('/signup', Accounts.showSignup);
-- router.post('/signup', Accounts.signup);
+- router.post('/signup', Accounts.signup); --> payload validation performed using express-validator
 - router.get('/logout', Accounts.logout);
 
 #### Dashboard
